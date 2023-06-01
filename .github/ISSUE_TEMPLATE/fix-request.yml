@@ -1,0 +1,50 @@
+name: 'Fix Request'
+description: 'Request a fix to previous work.'
+labels: ['fix']
+body:
+  - type: markdown
+    attributes:
+      value: 'Write a summary of the problem, the expected behavior, and the steps to recreate it.'
+  - type: textarea
+    validations:
+      required: true
+    attributes:
+      label: 'Problem'
+  - type: textarea
+    validations:
+      required: true
+    attributes:
+      label: 'Expected Behavior'
+  - type: textarea
+    validations:
+      required: true
+    attributes:
+      label: 'Steps to Reproduce'
+  - type: markdown
+    attributes:
+      value: 'Provide a link to the parent issue. The parent issue is the latest non-fix work, so either the original issue or the most recent refactor.'
+  - type: input
+    validations:
+      required: true
+    attributes:
+      label: 'Parent Issue'
+  - type: markdown
+    attributes:
+      value: 'List all links helpful for others to understand the problem.'
+  - type: textarea
+    attributes:
+      label: 'Resource Links'
+  - type: checkboxes
+    attributes:
+      label: 'Label'
+      description: 'Please assign the proper label to describe this work by selecting it on the right. The options are: `development`, `automation`, `artifacts`, `documentation`, and `project-management`.'
+      options:
+        - label: 'I have assigned a proper work label to this issue.'
+          required: true
+  - type: checkboxes
+    attributes:
+      label: 'Project'
+      description: 'Please assign this issue to a project.'
+      options:
+        - label: 'I have assigned this issue to a project.'
+          required: true

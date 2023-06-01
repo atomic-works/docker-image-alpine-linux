@@ -1,0 +1,43 @@
+name: 'Refactor'
+description: 'Request an update to existing work.'
+labels: ['refactor']
+body:
+  - type: markdown
+    attributes:
+      value: 'Write a summary of the problem, and how a refactor alleviates it.'
+  - type: textarea
+    validations:
+      required: true
+    attributes:
+      label: 'Problem'
+  - type: textarea
+    validations:
+      required: true
+    attributes:
+      label: 'Solution'
+  - type: markdown
+    attributes:
+      value: 'Provide a link to the parent issue, if one exists. If there is a parent, it is an enhancement request.'
+  - type: input
+    attributes:
+      label: 'Parent Issue'
+  - type: markdown
+    attributes:
+      value: 'List all links helpful for others to understand the problem.'
+  - type: textarea
+    attributes:
+      label: 'Resource Links'
+  - type: checkboxes
+    attributes:
+      label: 'Label'
+      description: 'Please assign the proper label to describe this work by selecting it on the right. The options are: `development`, `automation`, `artifacts`, `documentation`, and `project-management`.'
+      options:
+        - label: 'I have assigned a proper work label to this issue.'
+          required: true
+  - type: checkboxes
+    attributes:
+      label: 'Project'
+      description: 'Please assign this issue to a project.'
+      options:
+        - label: 'I have assigned this issue to a project.'
+          required: true
