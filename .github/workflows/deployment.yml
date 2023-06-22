@@ -68,10 +68,12 @@ jobs:
         token: ${{ secrets.GITHUB_TOKEN }}
     - name: 'Create Release'
       run: 'gh release create --verify-tag $(git describe --tags $(git rev-list --tags --max-count=1))'
-    - name: 'Save Tag In Job Output'
+    - name: 'Output Tag'
       run:  echo "tag=$(git rev-list --tags --max-count=1)" >> $GITHUB_OUTPUT
     env:
       GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    outputs:
+      tag: ${{ steps.output-tag.outputs.tag}}
   Publish-Docker-Image:
     needs: Create-Release
     permissions:
