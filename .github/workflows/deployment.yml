@@ -70,7 +70,7 @@ jobs:
       run: 'gh release create --verify-tag $(git describe --tags $(git rev-list --tags --max-count=1))'
     - name: 'Output Tag'
       id: output-tag
-      run:  echo "tag=$(git rev-list --tags --max-count=1)" >> $GITHUB_OUTPUT
+      run:  echo "tag=$(git describe --tags $(git rev-list --tags --max-count=1))" >> $GITHUB_OUTPUT
     env:
       GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     outputs:
