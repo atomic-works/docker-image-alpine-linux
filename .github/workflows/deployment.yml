@@ -68,6 +68,8 @@ jobs:
         token: ${{ secrets.GITHUB_TOKEN }}
     - name: 'Create Release'
       run: 'gh release create --verify-tag $(git describe --tags $(git rev-list --tags --max-count=1))'
+    - name: 'Save Tag In Job Output'
+      run:  echo "tag=$(git rev-list --tags --max-count=1)" >> $GITHUB_OUTPUT
     env:
       GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   Publish-Docker-Image:
@@ -87,6 +89,6 @@ jobs:
           context: .
           file: ./alpine-linux.dockerfile
           push: true
-          tags: ghcr.io/atomic-works/alpine-linux:latest
+          tags: ghcr.io/atomic-works/alpine-linux:latest, ghcr.io/atomic-works/alpine-linux:${{ needs.Create-Release.outputs.tag }}
         
     
