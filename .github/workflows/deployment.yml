@@ -71,6 +71,7 @@ jobs:
     env:
       GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   Publish-Docker-Image:
+    needs: Create-Release
     permissions:
       packages: write
     runs-on: ${{ vars.UBUNTU_VERSION }}
