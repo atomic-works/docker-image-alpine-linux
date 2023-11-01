@@ -16,8 +16,8 @@ jobs:
     secrets:
       GPG-key: ${{ secrets.GPG_KEY }}
       GPG-key-ID: ${{ secrets.GPG_KEY_ID }}
-      GPG-configuration-email: ${{ vars.GPG_CONFIG_EMAIL }}
-      GPG-configuration-name: ${{ vars.GPG_CONFIG_NAME }}
+      git-configuration-email: ${{ vars.GIT_CONFIG_EMAIL }}
+      git-configuration-name: ${{ vars.GIT_CONFIG_NAME }}
   create-release:
     uses: atomic-works/github-actions-reusable-workflows/.github/workflows/create-release.yml@development
     needs: create-semantic-version-tag
