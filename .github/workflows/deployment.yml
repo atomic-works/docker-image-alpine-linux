@@ -9,7 +9,7 @@ on:
 
 jobs:
   create-semantic-version-tag:
-    uses: atomic-works/github-actions-reusable-workflows/reusable-workflows/create-semantic-version-tag.yml@development
+    uses: atomic-works/github-actions-reusable-workflows/.github/workflows/create-semantic-version-tag.yml@development
     with:
       ubuntu-version: ${{ vars.UBUNTU_VERSION }}
       bump-type: ${{ vars.BUMP_TYPE }}
@@ -19,13 +19,13 @@ jobs:
       GPG-configuration-email: ${{ vars.GPG_CONFIG_EMAIL }}
       GPG-configuration-name: ${{ vars.GPG_CONFIG_NAME }}
   create-release:
-    uses: atomic-works/github-actions-reusable-workflows/reusable-workflows/create-release.yml@development
+    uses: atomic-works/github-actions-reusable-workflows/.github/workflows/create-release.yml@development
     needs: create-semantic-version-tag
     with:
       ubuntu-version: ${{ vars.UBUNTU_VERSION }}
       tag: ${{ needs.create-semantic-version-tag.tag }}
   deploy-docker-image:
-    uses: atomic-works/github-actions-reusable-workflows/reusable-workflows/deploy-docker-image.yml@development
+    uses: atomic-works/github-actions-reusable-workflows/.github/workflows/deploy-docker-image.yml@development
     needs:
     - create-semantic-version-tag
     - create-release
