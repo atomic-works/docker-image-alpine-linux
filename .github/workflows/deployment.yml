@@ -23,7 +23,7 @@ jobs:
     needs: create-semantic-version-tag
     with:
       ubuntu-version: ${{ vars.UBUNTU_VERSION }}
-      tag: ${{ needs.create-semantic-version-tag.tag }}
+      tag: ${{ needs.create-semantic-version-tag.outputs.tag }}
   deploy-docker-image:
     uses: atomic-works/github-actions-reusable-workflows/.github/workflows/deploy-docker-image.yml@development
     needs:
@@ -31,5 +31,5 @@ jobs:
     - create-release
     with:
       ubuntu-version: ${{ vars.UBUNTU_VERSION }}
-      tag: ${{ needs.create-semantic-version-tag.tag }}
+      tag: ${{ needs.create-semantic-version-tag.outputs.tag }}
       image-name: alpine-linux
