@@ -32,3 +32,4 @@ jobs:
     with:
       ubuntu-version: ${{ vars.UBUNTU_VERSION }}
       tag: ${{ needs.create-semantic-version-tag.tag }}
+      image-name: alpine-linux
