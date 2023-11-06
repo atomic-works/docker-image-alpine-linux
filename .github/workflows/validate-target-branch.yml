@@ -1,4 +1,4 @@
-name: Deployment
+name: Validate Target Branch
 
 on:
   pull_request_target:
