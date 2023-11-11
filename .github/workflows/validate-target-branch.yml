@@ -7,9 +7,6 @@ on:
     - opened
     - reopened
     - edited
-    branches:
-    - test
-    - production
 
 jobs:
   create-semantic-version-tag:
