@@ -1,8 +1,7 @@
 name: Validate Target Branch
 
-
 on:
-  pull_request_target:
+  pull_request:
     types:
     - synchronize
     - opened
@@ -10,7 +9,7 @@ on:
     - edited
 
 jobs:
-  create-semantic-version-tag:
+  validate-target-branch:
     uses: atomic-works/github-actions-reusable-workflows/.github/workflows/validate-target-branch.yml@development
     with:
       ubuntu-version: ${{ vars.UBUNTU_VERSION }}
