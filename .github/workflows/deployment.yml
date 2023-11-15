@@ -1,0 +1,35 @@
+name: Deployment
+
+on:
+  pull_request_target:
+    types:
+      - closed
+    branches:
+      - development
+
+jobs:
+  create-semantic-version-tag:
+    uses: atomic-works/github-actions-reusable-workflows/.github/workflows/create-semantic-version-tag.yml@development
+    with:
+      ubuntu-version: ${{ vars.UBUNTU_VERSION }}
+      bump-type: ${{ vars.BUMP_TYPE }}
+      git-configuration-email: ${{ vars.GIT_CONFIG_EMAIL }}
+      git-configuration-name: ${{ vars.GIT_CONFIG_NAME }}
+    secrets:
+      GPG-key: ${{ secrets.GPG_KEY }}
+      GPG-key-ID: ${{ secrets.GPG_KEY_ID }}
+  create-release:
+    uses: atomic-works/github-actions-reusable-workflows/.github/workflows/create-release.yml@development
+    needs: create-semantic-version-tag
+    with:
+      ubuntu-version: ${{ vars.UBUNTU_VERSION }}
+      tag: ${{ needs.create-semantic-version-tag.outputs.tag }}
+  deploy-docker-image:
+    uses: atomic-works/github-actions-reusable-workflows/.github/workflows/deploy-docker-image.yml@development
+    needs:
+    - create-semantic-version-tag
+    - create-release
+    with:
+      ubuntu-version: ${{ vars.UBUNTU_VERSION }}
+      tag: ${{ needs.create-semantic-version-tag.outputs.tag }}
+      image-name: alpine-linux

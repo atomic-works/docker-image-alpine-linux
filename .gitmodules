@@ -1,0 +1,3 @@
+[submodule "github-repository-license"]
+	path = github-repository-license
+	url = git@github.com:atomic-works/github-repository-license.git
