@@ -13,8 +13,8 @@ jobs:
     with:
       ubuntu-version: ${{ vars.UBUNTU_VERSION }}
       bump-type: ${{ vars.BUMP_TYPE }}
-      git-configuration-email: ${{ vars.GIT_CONFIG_EMAIL }}
-      git-configuration-name: ${{ vars.GIT_CONFIG_NAME }}
+      git-configuration-email: ${{ vars.GIT_CONFIGURATION_EMAIL }}
+      git-configuration-name: ${{ vars.GIT_CONFIGURATION_NAME }}
     secrets:
       GPG-key: ${{ secrets.GPG_KEY }}
       GPG-key-ID: ${{ secrets.GPG_KEY_ID }}
